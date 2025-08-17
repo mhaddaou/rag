@@ -47,7 +47,7 @@ A full-stack Retrieval-Augmented Generation (RAG) chat application that allows u
 
 ### 1. Clone the Repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/mhaddaou/rag.git
 cd rag
 ```
 
