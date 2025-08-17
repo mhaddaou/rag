@@ -1,0 +1,47 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator db {
+  provider             = "prisma-client-py"
+  interface            = "asyncio"
+  recursive_type_depth = 5
+}
+
+model User {
+  id         String    @id @default(cuid())
+  created_at DateTime  @default(now())
+  firstName  String
+  lastName   String
+  email      String    @unique
+  password   String
+  sessions   Session[]
+}
+
+model Session {
+  id         String    @id @default(cuid())
+  created_at DateTime  @default(now())
+  userId     String
+  user       User      @relation(fields: [userId], references: [id])
+  messages   Message[]
+  docs       Doc[]     // plural for clarity
+}
+
+model Message {
+  id         String    @id @default(cuid())
+  created_at DateTime  @default(now()) // fixed name
+  content    String
+  type       String
+  sessionId  String
+  session    Session   @relation(fields: [sessionId], references: [id])
+}
+
+model Doc {
+  id         String    @id @default(cuid())
+  created_at DateTime  @default(now())
+  file_path  String     
+  name       String
+  sessionId  String
+  session    Session   @relation(fields: [sessionId], references: [id])
+}

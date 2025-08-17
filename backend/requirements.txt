@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+prisma
+bcrypt
+PyJWT
+python-dotenv
+langchain
+langchain-community
+langchain-core
+langchain-ollama
+langchain-chroma
+pymupdf4llm
+chromadb
